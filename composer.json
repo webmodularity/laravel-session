@@ -1,0 +1,26 @@
+{
+  "name": "webmod/laravel-session",
+  "description": "WM Package that handles sessions.",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Rory Hellyer",
+      "email": "rory@webmodularity.com"
+    }
+  ],
+  "repositories": [
+    {"type": "composer", "url": "https://toran.webmodularity.com/repo/private/"}
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "WebModularity\\LaravelSession\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=5.6.4",
+    "illuminate/support": "~5.4.0",
+    "illuminate/database": "~5.4.0",
+    "webmod/laravel-log": "*"
+  }
+}
