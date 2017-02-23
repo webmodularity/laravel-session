@@ -13,7 +13,9 @@ class SessionServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        // Session
+        // Migrations
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
         $this->app->make('session')->extend('wm-database', function ($app) {
             // Return implementation of SessionHandlerInterface...
             $sessionConnection = $app->make('db')->connection(config('session.connection'));
