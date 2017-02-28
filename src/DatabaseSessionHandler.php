@@ -32,9 +32,12 @@ class DatabaseSessionHandler extends \Illuminate\Session\DatabaseSessionHandler
             $payload['ip_address'] = inet_pton($container->make('request')->ip());
 
             // User Agent
-            $userAgent = LogUserAgent::firstOrCreateFromUserAgent($container->make('request')->header('User-Agent'));
-            if (!is_null($userAgent)) {
-                $payload['user_agent_id'] = $userAgent->id;
+            $userAgent = $container->make('request')->header('User-Agent');
+            if (!empty($userAgent)) {
+                $payload['user_agent_id'] = LogUserAgent::firstOrCreate(
+                    ['user_agent_hash' => LogUserAgent::hashUserAgent($userAgent)],
+                    ['user_agent' => $userAgent]
+                )->id;
             }
         }
 
